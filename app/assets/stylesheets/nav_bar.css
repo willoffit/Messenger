@@ -1,0 +1,66 @@
+body {
+  height: 10000px
+}
+
+.navbar {
+  height: 70px;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  padding: 25px 5px 15px 50px;
+}
+
+.logo {
+  width: 25px;
+  height: 25px;
+}
+
+.logo, .title {
+  padding: 0px 0px 5px 0px;
+}
+
+.title {
+  font-family: sans-serif;
+  font-weight: 800;
+  font-size: 25px;
+  margin: 0px 0px 5px 5px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 0.5px solid lightgrey;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10000;
+  background-color: white;
+}
+
+.links-to-form {
+  padding: 25px 40px 25px 15px;
+}
+
+.links-to-form .link {
+  display: inline-block;
+}
+
+.links-to-form .link a {
+  padding: 12px 15px 12px 15px;
+  color: white;
+  background-color: #611f69;
+  text-decoration: none;
+  margin: 5px;
+  border-radius: 4px;
+  font-family: "Helvetica Neue",Helvetica,"Segoe UI",Tahoma,Arial,sans-serif;
+  text-transform: uppercase;
+  font-weight: 450;
+  font-size: 15px;
+}
+
+.links-to-form .link a:hover {
+  background-color: #400d40;
+}

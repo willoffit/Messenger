@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 class SignupForm extends React.Component {
   constructor(props) {
@@ -24,20 +25,32 @@ class SignupForm extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="signup-form">
+        <Link to="/">Back to homepage</Link>
+        <br />
         <h1>{this.props.formType}</h1>
         <form onSubmit={this.handleSubmit}>
-          <label>Username: 
+          <label className="username-input">      
             <input type="text" onChange={this.update("username")} value={this.state.username} />
           </label>
-          <label>Email:
+          <br />
+          <label className="email-input">
             <input type="text" onChange={this.update("email")} value={this.state.email} />
           </label>
-          <label>Password: 
+          <br />
+          <label className="password-input">
             <input type="password" onChange={this.update("password")} value={this.state.password} />
           </label>
-          <button>Submit</button>
+          <br />
+          <section className="submit-button">
+            <button>Continue</button>
+          </section>
         </form>
+        <ul className="errors">
+          {this.props.errors.login.map((error, idx) => (
+            <li key={idx}>{error}</li>
+          ))}
+        </ul>
       </div>
     )
   }
