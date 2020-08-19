@@ -1,0 +1,28 @@
+.main-page-header {
+  height: 37px;
+  background-color: #400d40;
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+#logout-button {
+  position: relative;
+  right: 15px;
+  background-color:#400d40;
+  color: rgb(187, 187, 187);
+  border: none;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+#logout-button:hover {
+  position: relative;
+  right: 15px;
+  color: white;
+  cursor: pointer;
+  transition: .3s;
+}
+

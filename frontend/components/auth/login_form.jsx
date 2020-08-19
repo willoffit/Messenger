@@ -14,6 +14,11 @@ class LoginForm extends React.Component {
     this.handleDemo = this.handleDemo.bind(this);
   }
 
+  componentDidMount() {
+    const input = document.getElementById('username');
+    input.focus();
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     this.props.processForm(this.state);
@@ -28,42 +33,58 @@ class LoginForm extends React.Component {
     return e => this.setState({ [field]: e.currentTarget.value })
   }
 
+  errors() {
+    if (this.props.errors.login.length > 0) {
+      return (
+        <div className="errors">
+          <i className="fal fa-exclamation-triangle"></i>
+          <ul>
+            {this.props.errors.login.map((error, idx) => (
+              <li key={idx}>{error}</li>
+            ))}
+          </ul>
+        </div>
+      )
+    } else {
+      return;
+    }
+  }
+
   render() {
     return(
       <div className="login-form">
-        
-        <Link to="/" className="homepage-link">
-          <ul className="icons">
-            <li><img src={window.logo} alt="Messenger Logo" className="logo" /></li>
-            <li className="title">messenger</li>
-          </ul>
-        </Link>
-
-        {/* <input data-qa="signin_domain_input" aria-describedby="domain_hint" aria-invalid="false" aria-required="false" aria-label="" class="c-input_text c-input_text--large full_width margin_bottom_100" id="domain" name="domain" placeholder="your-workspace" type="text" value=""></input> */}
-        
-        <br />
-        <h1>{this.props.formType}</h1>
-        <p>Enter your username and password</p>
+          <Link to="/" className="homepage-link" onClick={this.props.clearLoginErrors}>
+            <ul className="icons">
+              <li><img src={window.logo} alt="Messenger Logo" className="logo" /></li>
+              <li className="title">messenger</li>
+            </ul>
+          </Link>
+    
+          <br />
+          <h1>Sign in to your account</h1>
+          <p>Enter your username and password</p>
+          <div className="error-holder">
+            {this.errors()}
+          </div>
         <form onSubmit={this.handleSubmit}>
-          <label className="username-input">
-            <input placeholder="username" type="text" onChange={this.update("username")} value={this.state.username} />
-          </label>
-          <br />
-          <label className="password-input">
-            <input placeholder="password" type="password" onChange={this.update("password")} value={this.state.password} />
-          </label >
-          <br />
-          <section className="submit-button">
-            <button>Submit</button>
-          </section>
+          <ul className="boxes">
+            <li className="username-input">
+              <input id="username" placeholder="username" type="text" onChange={this.update("username")} value={this.state.username} />
+            </li>
+            <br />
+            <li className="password-input">
+              <input placeholder="password" type="password" onChange={this.update("password")} value={this.state.password} />
+            </li >
+            <br />
+            <li className="submit-button">
+              <button>Continue</button>
+            </li>
+          </ul>
         </form>
         <br />
-        <button className="demo-user-button" onClick={this.handleDemo}>Sign in as a demo user</button>
-        <ul>
-          {this.props.errors.login.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
+        <section className="submit-button demo">
+          <button onClick={this.handleDemo}>Continue as a demo user</button>
+        </section>
       </div>
     )
   }

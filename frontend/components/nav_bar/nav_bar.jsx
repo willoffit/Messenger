@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -9,19 +9,17 @@ class NavBar extends React.Component {
   render() {
     if (this.props.currentUser) {
       return (
-        <div>
-          <div>Welcome {this.props.currentUser.username}</div>
-          <button onClick={this.props.logout}>Log Out</button>
-          <h1>Messenger</h1>
-        </div>
+        <Redirect to="/client" />
       )
     } else {
       return (
         <ul className="navbar">
-          <ul className="icons">
-            <li><img src={window.logo} alt="Messenger Logo" className="logo"/></li>
-            <li className="title">messenger</li>
-          </ul>
+          <Link className="icon-link" to="/">
+            <ul className="icons">
+              <li><img src={window.logo} alt="Messenger Logo" className="logo"/></li>
+              <li className="title">messenger</li>
+            </ul>
+          </Link>
           <ul className="links-to-form">
             <li className="link">
               <Link to="/login">Log In</Link>
