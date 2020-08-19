@@ -1,4 +1,6 @@
 const path = require('path');
+const webpack = require("webpack");
+const dev = process.env.NODE_ENV.trim() !== "production";
 module.exports = {
   context: __dirname,
   entry: './frontend/messenger.jsx', 
@@ -22,6 +24,9 @@ module.exports = {
         },
       }
     ]
-  },
+  }, plugins: dev ? [] : [
+    new webpack.optimize.UglifyJsPlugin()
+  ],
+  target: "node",
   devtool: 'source-map'
 };

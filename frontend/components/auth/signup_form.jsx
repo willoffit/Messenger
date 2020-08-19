@@ -17,6 +17,7 @@ class SignupForm extends React.Component {
   componentDidMount() {
     const input = document.getElementById('username');
     input.focus();
+    this.props.clearLoginErrors
   }
 
   handleSubmit(e) {
