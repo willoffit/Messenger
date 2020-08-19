@@ -7,7 +7,7 @@ export default (preloadedState = {}) => {
   let middleware = [thunk];
 
   if (process.env.NOVE_ENV !== 'production') {
-    middleware = [...middleware, logger]
+    middleware = [...middleware, logger];
   }
 
   return createStore(RootReducer, preloadedState, applyMiddleware(...middleware));
