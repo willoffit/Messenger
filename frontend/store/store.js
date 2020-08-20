@@ -6,7 +6,7 @@ import logger from 'redux-logger';
 export default (preloadedState = {}) => {
   let middleware = [thunk];
 
-  if (process.env.NOVE_ENV !== 'production') {
+  if (process.env.NOVE_ENV.trim() !== 'production') {
     middleware = [...middleware, logger];
   }
 
