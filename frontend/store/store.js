@@ -6,9 +6,9 @@ import logger from 'redux-logger';
 export default (preloadedState = {}) => {
   let middleware = [thunk];
 
-  if (process.env.NOVE_ENV !== 'production') {
-    middleware = [...middleware, logger];
-  }
+  // if (process.env.NOVE_ENV !== 'production') {
+  //   middleware = [...middleware, logger];
+  // }
 
   
   return createStore(RootReducer, preloadedState, applyMiddleware(...middleware));
