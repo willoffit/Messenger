@@ -1,12 +1,14 @@
-import { logout, clearLoginErrors } from '../../actions/session_actions';
+import { logout } from '../../actions/session_actions';
 import { connect } from 'react-redux';
 import MainDisplay from './main_display';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state, ownProps) => ({
+  channelId: ownProps.match.params.channelId,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  logout: () => dispatch(logout())
+  logout: () => dispatch(logout()),
+  fetchChannels: () => dispatch(fetchChannels())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainDisplay);

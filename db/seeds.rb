@@ -9,5 +9,7 @@
 User.delete_all
 
 demo_user = User.create!(username: 'DemoUser', password: '123456', email: 'test@demo.com')
-
+channel1 = Channel.create!(name: "channel1", channel_type: "direct_message")
+# channel_participant = Channel_participant.create!(user_id: 1, channel_id: 1)
+message1 = Message.create(body: "test message", channel_id: 1, user_id: 1)
 p "Done!"

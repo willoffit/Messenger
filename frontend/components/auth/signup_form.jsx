@@ -82,6 +82,9 @@ class SignupForm extends React.Component {
             </li>
           </ul>
         </form>
+        <section className="redirect">
+          Looking to log in instead? <Link className="link" to="/login">Log in</Link>
+        </section>
       </div>
     )
   }

@@ -154,3 +154,25 @@ button {
   text-align: center;
   font-size: 17px;
 }
+
+
+.signup-form .redirect {
+  font-size: 13px;
+  line-height: 1.38463;
+  font-weight: 400;
+  color: rgba(var(--sk_foreground_max,29,28,29),.7);
+  font-family: sans-serif;
+  position: relative;
+  top: 87px;
+}
+
+.signup-form .redirect .link {
+  text-decoration: none;
+  color: rgb(25, 102, 161);
+  font-weight: 550;
+}
+
+.signup-form .redirect .link:hover {
+  text-decoration: underline;
+  color: rgb(19, 77, 121);
+}

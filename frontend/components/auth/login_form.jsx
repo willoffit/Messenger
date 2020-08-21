@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -85,6 +85,9 @@ class LoginForm extends React.Component {
         <br />
         <section className="submit-button demo">
           <button onClick={this.handleDemo}>Continue as a demo user</button>
+        </section>
+        <section className="redirect">
+          Looking to sign up instead? <Link className="link" to="/signup">Sign up</Link>
         </section>
       </div>
     )

@@ -1,0 +1,19 @@
+import React, { Fragment } from 'react';
+import { ActionCable } from 'react-actioncable-provider';
+
+const Cable = ({ channels, handleReceivedMessage }) => (
+  <Fragment>
+    {channels.map(channel => {
+      return (
+        <ActionCable
+          key={channel.id}
+          channel={{ channel: 'MessagesChannel', channel: channel.id }}
+          onReceived={handleReceivedMessage}
+        />
+      );
+    })}
+  </Fragment>
+)
+
+
+export default Cable;

@@ -10,7 +10,7 @@ class Header extends React.Component {
     return (
       <header className="main-page-header">
         <button id="logout-button" onClick={this.props.logout}>
-          <i class="fal fa-sign-out"></i>
+          <i className="fal fa-sign-out"></i>
           <span>   </span>
           Log Out
         </button>
