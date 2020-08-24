@@ -1,14 +1,14 @@
 class Api::MessagesController < ApplicationController
+  skip_before_action :verify_authenticity_token
+
   def create
     @message = Message.new(message_params)
-    channel = Channel.find(message_params[:channel_id])
 
     if @message.save
-      serialized_data = ActiveModelSerializers::Adapter::Json.new(
-        MessageSerializer.new(@message)
-      ).serializable_hash
-      MessagesChannel.broadcast_to channel, serialized_data
-      head :ok
+      ActionCable.server.broadcast "chat", {"message" => {@message.id => @message}}
+      render "api/messages/show"
+    else
+      render @message.errors.full_messages, status: 422
     end
   end
 

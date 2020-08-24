@@ -1,1 +1,3 @@
-json.extract! @message, :id, :body, :author_id, :channel_id, :created_at
+json.set! @message.id do
+  json.partial! 'message', message: @message
+end

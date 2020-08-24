@@ -8,6 +8,8 @@ class NewChannelForm extends React.Component {
       name: "",
       channel_type: ""
     }
+
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(field) {
@@ -15,27 +17,19 @@ class NewChannelForm extends React.Component {
   }
 
   handleSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
     this.props.createChannel(this.state);
   };
 
   render() {
     return (
-      <div className="newChannelForm">
+      <div className="new-channel-form">
         <form onSubmit={this.handleSubmit}>
           <label>New Channel:</label>
           <br />
-          <input
-            type="text"
-            value={this.state.title}
-            onChange={this.handleChange}
-          />
-          <input
-            type="text"
-            value={this.state.channel_type}
-            onChange={this.handleChange}
-          />
-          <input type="submit" />
+          <input type="text" value={this.state.name} onChange={this.handleChange("name")} />
+          <input type="text" value={this.state.channel_type} onChange={this.handleChange("channel_type")} />
+          <button>Submit</button>
         </form>
       </div>
     );

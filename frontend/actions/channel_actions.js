@@ -23,11 +23,13 @@ export const fetchChannels = () => dispatch => (
     .then(channels => (dispatch(receiveChannels(channels))))
 );
 
+
 export const createChannel = (channel) => dispatch => (
-  fetch(`${API_ROOT}/api/channels`, {
-    method: 'POST',
-    headers: HEADERS,
-    body: JSON.stringify(channel)
-  }).then(() => dispatch(receiveChannel(channel)))
+  $.ajax({
+    method: "POST",
+    url: "api/channels",
+    data: { channel }
+  }).then((channel) => dispatch(receiveChannel(channel)))
 )
+
 

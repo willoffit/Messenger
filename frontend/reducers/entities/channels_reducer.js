@@ -8,7 +8,7 @@ const channelsReducer = (state = {}, action) => {
     case RECEIVE_CHANNELS:
       newState = {};
       action.channels.forEach(channel => {
-        newState[channel.id] = action
+        newState[channel.id] = channel;
       });
       return newState;
     case RECEIVE_CHANNEL:

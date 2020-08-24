@@ -1,0 +1,119 @@
+.sidebar {
+  position: relative;
+  top: 37px;
+  height: 100vh;
+  background-color: rgb(63, 16, 63);
+  width: 260px;
+}
+
+.sidebar .top-box {
+  border-top: 1px solid rgb(82, 40, 82);
+  border-bottom: 1px solid rgb(82, 40, 82);
+  padding: 25px 15px 22px 15px;
+  color: white;
+  font-family: sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  position: fixed;
+  width: 230px;
+  z-index: 999;
+}
+
+.sidebar .top-box:hover {
+  background-color: rgb(53, 15, 53);
+}
+
+.channel-list {
+  top: 35px;
+}
+
+#list {
+  display: none;
+}
+
+.revealed {
+  display: block !important;
+}
+
+#right-arrow {
+  display: none;
+}
+
+#down-arrow {
+  display: none;
+}
+
+.fas {
+  height: 15px;
+  width: 15px;
+  padding: 5px;
+  position: relative;
+  color: rgb(207, 195, 207);
+}
+
+.channel-combo {
+  padding: 15px;
+  position: relative;
+  top: 50px;
+
+}
+
+.fas:hover {
+  background-color: rgb(83, 40, 83);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.fas {
+  position: absolute;
+  width: 15px;
+  text-align: center;
+}
+
+.channel-title {
+  position: relative;
+  top: 4px;
+  left: 28px;
+  color: rgb(199, 185, 199);
+  font-family: sans-serif;
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.channel-title::selection {
+  color: none;
+  background: none;
+}
+
+.top-box h1::selection {
+  color: none;
+  background: none;
+}
+
+.channel-title:hover {
+  cursor: pointer;
+}
+
+.channel-list {
+  z-index: 995;
+  position: relative;
+}
+
+#list {
+  position: relative;
+  top: 30px;
+  left: 42px;
+}
+
+.channel-link {
+  color: rgb(199, 185, 199);
+  text-decoration: none;
+  width: 260px;
+  display: block;
+  position: relative;
+  right: 25px;
+}
+
+.channel-link:hover {
+  background-color: rgb(53, 15, 53);
+}

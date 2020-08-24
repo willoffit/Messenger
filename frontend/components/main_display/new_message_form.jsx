@@ -6,9 +6,17 @@ class NewMessageForm extends React.Component {
     super(props);
 
     this.state = {
-      text: '',
-      channel_id: this.props.channel_id
+      body: '',
+      channel_id: this.props.channel_id,
+      author_id: this.props.currentUser.id
     };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.fetchMessages();
   }
   
   componentWillReceiveProps(nextProps) {
@@ -16,12 +24,16 @@ class NewMessageForm extends React.Component {
   };
 
   handleChange(e) {
-    this.setState({ text: e.target.value });
+    this.setState({ body: e.target.value });
   };
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.createMessage(this.state);
+    this.props.createMessage(this.state).then((res) => {
+      App.cable.subscriptions.subscriptions[0].speak({
+        message: res.message,
+      });
+    });
   };
 
   render() {

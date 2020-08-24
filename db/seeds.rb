@@ -7,9 +7,12 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 User.delete_all
+Channel.delete_all
+ChannelParticipant.delete_all
+Message.delete_all
 
 demo_user = User.create!(username: 'DemoUser', password: '123456', email: 'test@demo.com')
 channel1 = Channel.create!(name: "channel1", channel_type: "direct_message")
-# channel_participant = Channel_participant.create!(user_id: 1, channel_id: 1)
-message1 = Message.create(body: "test message", channel_id: 1, user_id: 1)
+channel_participant = ChannelParticipant.create!(user_id: demo_user.id, channel_id: channel1.id)
+message1 = Message.create!(body: "test message", author_id: demo_user.id, channel_id: channel1.id)
 p "Done!"

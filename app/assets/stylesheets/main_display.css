@@ -1,17 +1,18 @@
 .main-page-header {
   height: 37px;
-  background-color: #400d40;
+  background-color: rgb(53, 15, 53);
   position: fixed;
   width: 100%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  z-index: 1000;
 }
 
 #logout-button {
   position: relative;
   right: 15px;
-  background-color:#400d40;
+  background-color:rgb(53, 15, 53);
   color: rgb(187, 187, 187);
   border: none;
   font-weight: 400;
@@ -26,7 +27,8 @@
   transition: .3s;
 }
 
-.channel-list {
-  position: relative;
-  top: 100px;
+#logout-button::selection {
+  color: none;
+  background: none;
 }
+

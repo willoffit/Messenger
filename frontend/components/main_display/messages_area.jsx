@@ -1,11 +1,11 @@
 import React from 'react';
 import NewMessageForm from './new_message_form';
 
-const MessagesArea = ({ channel: { id, name }, activeChannelMessages }) => (
+const MessagesArea = (props) => (
   <div className="messagesArea">
-    <h2>{name}</h2>
-    <ul>{orderedMessages(activeChannelMessages)}</ul>
-    <NewMessageForm channel_id={id} createMessage={this.props.createMessage} />
+    <h2>{props.channel.name}</h2>
+    <ul>{orderedMessages(props.activeChannelMessages)}</ul>
+    <NewMessageForm fetchMessages={props.fetchMessages} channel_id={props.channel.id} createMessage={props.createMessage} currentUser={props.currentUser} />
   </div>
 )
 

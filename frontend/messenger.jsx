@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
     preloadedState = {
       entities: {
         users: { 
-          1: { username: "demoUser", password: "123456" },
           [window.currentUser.id]: window.currentUser
         }
       },
@@ -26,9 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     preloadedState = {
       entities: {
-        users: {
-          1: { username: "demoUser", password: "123456" }
-        }
+        users: {}
       },
     };
     store = configureStore(preloadedState);

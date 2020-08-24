@@ -1,28 +1,19 @@
 import React from 'react';
-import { ActionCable } from 'react-actioncable-provider';
-import { fetchChannels } from '../../actions/channel_actions';
 import NewChannelForm from './new_channel_form';
 import MessagesArea from './messages_area';
 import Cable from './cables';
-import { Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class ChannelsList extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { 
-      channels: this.props.channels,
-      activeChannelId: this.props.channelId,
-      activeChannelMessages: this.props.messages
-    }
+    this.handleReceivedChannel = this.handleReceivedChannel.bind(this);
+    this.handleReceivedMessage = this.handleReceivedMessage.bind(this);
   }
 
   componentDidMount() {
-    fetchChannels();
-  };
-
-  handleClick(id) {
-    <Redirect to={`/client/${id}`} />
+    this.props.fetchChannels();
   };
 
   handleReceivedChannel(response) {
@@ -35,38 +26,57 @@ class ChannelsList extends React.Component {
     this.props.receiveMessage(message);
   };
 
-  mapChannels(channels, handleClick) {
-    return Object.values(channels).map(channel => {
+  mapChannels(channels) {
+    return Object.values(channels).map((channel, idx) => {
       return (
-        <li key={channel.id} onClick={() => handleClick(channel.id)}>
-          {conversation.title}
+        <li key={idx}>
+          <Link to={`/client/${channel.id}`} className="channel-link">{channel.name}</Link>
         </li>
       );
     });
   };
 
+  channelToggle() {
+    let channels = document.getElementById("list");
+    let rightArrow = document.getElementById("right-arrow");
+    let downArrow = document.getElementById("down-arrow");
+
+    if (channels.classList.contains("revealed")) {
+      channels.classList.remove("revealed");
+      rightArrow.classList.add("revealed");
+      downArrow.classList.remove("revealed");
+    } else { 
+      channels.classList.add("revealed");
+      rightArrow.classList.remove("revealed");
+      downArrow.classList.add("revealed");
+    }
+  }
+
   render() {
-    const { channels, activeChannelId } = this.state;
     return (
-      <div className="channel-list">
-        <ActionCable
-          channel={{ channel: 'ChannelsChannel' }}
-          onReceived={this.handleReceivedChannel}
-        />
-        {this.state.channels.length ? (
-          <Cable
-            channels={channels}
-            handleReceivedMessage={this.handleReceivedMessage}
-          />
-        ) : null}
-        <h2>channel</h2>
-        <ul>{this.mapChannels(channels, this.handleClick)}</ul>
-        <NewChannelForm createChannel={this.props.createChannel} />
-        {activeChannelId ? (
-          <MessagesArea
-            channel={channels[activeChannelId]} messages={this.props.activeChannelMessages} createMessage={this.props.createMessage}
-          />
-        ) : null}
+      <div className="sidebar">
+        <section className="top-box">
+          <h1>{this.props.currentUser.username}</h1>
+          </section>
+        <section className="channel-list">
+          <div className="channel-combo">
+            <section id="right-arrow" className="revealed" onClick={this.channelToggle}>
+              <i class="fas fa-caret-right"></i>
+            </section>
+            <section id="down-arrow" onClick={this.channelToggle}>
+              <i class="fas fa-caret-down"></i>
+            </section>
+            <h2 className="channel-title" onClick={this.channelToggle}>Channels</h2>
+          </div>
+          <br />
+          <ul id="list">{this.mapChannels(this.props.channels)}</ul>
+          {/* <NewChannelForm createChannel={this.props.createChannel} /> */}
+        </section>
+        <section className="messages-area">
+          {this.props.channels[this.props.channelId] ? (
+            <MessagesArea fetchMessages={this.props.fetchMessages} channel={this.props.channels[this.props.channelId]} activeChannelMessages={this.props.messages} createMessage={this.props.createMessage} currentUser={this.props.currentUser} />
+          ) : null}
+        </section>
       </div>
     );
   };

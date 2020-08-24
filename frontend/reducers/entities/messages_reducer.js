@@ -9,7 +9,11 @@ const messagesReducer = (state = {}, action) => {
       newState[action.message.id] = action.message;
       return newState;
     case RECEIVE_MESSAGES:
-      return action.messages;
+      newState = {};
+      action.messages.forEach(message => {
+        newState[message.id] = message;
+      });
+      return newState;
     default:
       return state;
   }
