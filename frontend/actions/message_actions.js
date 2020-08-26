@@ -17,18 +17,18 @@ export const receiveMessage = (message) => ({
     message
 });
 
-export const fetchMessages = () => dispatch => (
+export const fetchMessages = (channelId) => dispatch => (
   $.ajax({
     method: "GET",
-    url: "api/channels/messages"
+    url: `api/channels/${channelId}/messages`
   }).then(messages => (dispatch(receiveMessages(messages))))
 );
 
 export const createMessage = message => dispatch => (
   $.ajax({
     method: "POST",
-    url: `api/channels/${message.channel_id}/messages`,
+    url: `api/messages`,
     data: { message }
-  }).then(message => dispatch(receiveMessage(message)))
+  })
 );
 

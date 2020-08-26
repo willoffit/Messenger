@@ -7,20 +7,25 @@ class NewMessageForm extends React.Component {
 
     this.state = {
       body: '',
-      channel_id: this.props.channel_id,
+      channel_id: this.props.channelId,
       author_id: this.props.currentUser.id
     };
+    
+    App.cable.subscriptions.create(
+      { channel: 'ChatChannel' },
+      { received: (message) => this.props.receiveMessage(message) }
+    )
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
-    this.props.fetchMessages();
+    this.props.fetchMessages(this.props.channelId);
   }
   
   componentWillReceiveProps(nextProps) {
-    this.setState({ channel_id: nextProps.channel_id });
+    this.setState({ channel_id: nextProps.channelId });
   };
 
   handleChange(e) {
@@ -29,25 +34,23 @@ class NewMessageForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.createMessage(this.state).then((res) => {
-      App.cable.subscriptions.subscriptions[0].speak({
-        message: res.message,
-      });
-    });
+    this.props.createMessage(this.state);
   };
 
   render() {
     return (
-      <div className="newMessageForm">
+      <div className="new-message-form">
         <form onSubmit={this.handleSubmit}>
-          <label>New Message:</label>
           <br />
-          <input
+          <input placeholder={`Message ${this.props.channelName}`}
+            id="message-input"
             type="text"
             value={this.state.body}
             onChange={this.handleChange}
-          />
-          <input type="submit" />
+          /> 
+          <div className="message-panel">
+            <button id="message-submit" type="submit"><i className="fas fa-paper-plane"></i></button>
+          </div>
         </form>
       </div>
     );

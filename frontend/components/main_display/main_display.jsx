@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './header';
-import ChannelsListContainer from './channels_list_container';
+import ChannelsListContainer from './channels/channels_list_container';
+import MessageContainer from './messages/message_container';
 
 class MainDisplay extends React.Component {
   constructor(props) {
@@ -12,7 +13,8 @@ class MainDisplay extends React.Component {
     return(
       <div>
         <Header logout={this.props.logout} />
-        <ChannelsListContainer channelId={this.props.channelId} />
+        <ChannelsListContainer />
+        <MessageContainer />
       </div>
     )
   }

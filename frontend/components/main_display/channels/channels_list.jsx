@@ -1,29 +1,14 @@
 import React from 'react';
 import NewChannelForm from './new_channel_form';
-import MessagesArea from './messages_area';
-import Cable from './cables';
 import { Link } from 'react-router-dom';
 
 class ChannelsList extends React.Component {
   constructor(props) {
     super(props);
-
-    this.handleReceivedChannel = this.handleReceivedChannel.bind(this);
-    this.handleReceivedMessage = this.handleReceivedMessage.bind(this);
   }
 
   componentDidMount() {
     this.props.fetchChannels();
-  };
-
-  handleReceivedChannel(response) {
-    const { channel } = response;
-    this.props.receiveChannel(channel);
-  };
-
-  handleReceivedMessage(response) {
-    const { message } = response;
-    this.props.receiveMessage(message);
   };
 
   mapChannels(channels) {
@@ -61,21 +46,16 @@ class ChannelsList extends React.Component {
         <section className="channel-list">
           <div className="channel-combo">
             <section id="right-arrow" className="revealed" onClick={this.channelToggle}>
-              <i class="fas fa-caret-right"></i>
+              <i className="fas fa-caret-right"></i>
             </section>
             <section id="down-arrow" onClick={this.channelToggle}>
-              <i class="fas fa-caret-down"></i>
+              <i className="fas fa-caret-down"></i>
             </section>
             <h2 className="channel-title" onClick={this.channelToggle}>Channels</h2>
           </div>
           <br />
           <ul id="list">{this.mapChannels(this.props.channels)}</ul>
           {/* <NewChannelForm createChannel={this.props.createChannel} /> */}
-        </section>
-        <section className="messages-area">
-          {this.props.channels[this.props.channelId] ? (
-            <MessagesArea fetchMessages={this.props.fetchMessages} channel={this.props.channels[this.props.channelId]} activeChannelMessages={this.props.messages} createMessage={this.props.createMessage} currentUser={this.props.currentUser} />
-          ) : null}
         </section>
       </div>
     );

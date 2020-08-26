@@ -1,3 +1,1 @@
-json.set! @message.id do
-  json.partial! 'message', message: @message
-end
+json.partial! 'message', message: @message

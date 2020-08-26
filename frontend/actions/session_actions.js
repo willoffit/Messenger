@@ -3,11 +3,17 @@ export const RECEIVE_CURRENT_USER = "RECEIVE_CURRENT_USER";
 export const LOGOUT_USER = "LOGOUT_USER";
 export const RECEIVE_LOGIN_ERRORS = "RECEIVE_LOGIN_ERRORS";
 export const CLEAR_LOGIN_ERRORS = "CLEAR_LOGIN_ERRORS";
+export const RECEIVE_USERS = "RECEIVE_USERS";
 
 export const receiveCurrentUser = (user) => ({
   type: RECEIVE_CURRENT_USER,
   user
 });
+
+export const receiveUsers = (users) => ({
+  type: RECEIVE_USERS,
+  users
+})
 
 export const logoutUser = () => ({
   type: LOGOUT_USER
@@ -35,4 +41,11 @@ export const login = (user) => dispatch => (
 export const logout = () => dispatch => (
   SessionApiUtil.logout()
     .then(user => (dispatch(logoutUser(user))), errors => (dispatch(receiveLoginErrors(errors.responseJSON))))
+);
+
+export const fetchUsers = () => dispatch => (
+  $.ajax({
+    method: "GET",
+    url: "/api/users"
+  }).then(users => dispatch(receiveUsers(users)))
 );

@@ -18,9 +18,10 @@ export const receiveChannel = (channel) => ({
 });
 
 export const fetchChannels = () => dispatch => (
-  fetch(`${API_ROOT}/api/channels`)
-    .then(res => res.json())
-    .then(channels => (dispatch(receiveChannels(channels))))
+  $.ajax({
+    method: "GET",
+    url: "api/channels"
+  }).then(channels => dispatch(receiveChannels(channels)))
 );
 
 

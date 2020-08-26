@@ -5,15 +5,23 @@ class Api::MessagesController < ApplicationController
     @message = Message.new(message_params)
 
     if @message.save
-      ActionCable.server.broadcast "chat", {"message" => {@message.id => @message}}
+      data = { 
+        id: @message.id,
+        body: @message.body,
+        author_id: @message.author_id,
+        channel_id: @message.channel_id,
+        created_at: @message.created_at
+      }
+      ChatChannel.broadcast_to("chat_channel", data)
       render "api/messages/show"
     else
-      render @message.errors.full_messages, status: 422
+      render json: @message.errors.full_messages, status: 422
     end
   end
 
   def index
-    @messages = Message.all
+    channel = Channel.find_by(id: params[:channel_id])
+    @messages = channel.messages
     render :index
   end
 

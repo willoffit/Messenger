@@ -1,0 +1,104 @@
+.new-message-form {
+  background-color: white;
+}
+
+.messages-area {
+  position: relative;
+  left: 297px;
+  width: 70vw;
+  height: 50vh;
+}
+
+.messages-area h2 {
+  position: fixed;
+  left: 260px;
+  bottom: 459px;
+  border-bottom: 1px solid rgb(226, 226, 226);
+  width: 1050px;
+  height: 37px;
+  vertical-align: center;
+  padding: 260px 0px 0px 35px;
+  z-index: 999;
+  font-weight: 800;
+  font-size: 15px;
+  letter-spacing: 0.5px;
+  font-family: sans-serif;
+  color: black;
+  background-color: white;
+}
+
+.messages-area ul {
+  background: white;
+  color: black;
+  position: relative;
+  height: 250px;
+  width: 900px;
+  bottom: 1800px;
+  right: 20px;
+  overflow: scroll;
+}
+
+#message-input {
+  width: 972px;
+  height: 70px;
+  position: relative;
+  bottom: 60px;
+  right: 20px;
+  outline: none;
+  border-radius: 5px;
+  border: 1px solid rgb(93, 93, 93);
+}
+
+
+#message-input {
+  padding: 0px 0px 30px 10px;
+  height: 50px;
+}
+
+.message-panel {
+  border-top: 1px solid rgb(211, 211, 211);
+  width: 982px;
+  background-color: green;
+  height: 30px;
+  position: relative;
+  bottom: 91px;
+  right: 20px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-color: rgb(247, 247, 247);
+  border: 1px solid rgb(90, 89, 90);
+  border-top: 1px solid rgb(221, 221, 221);
+}
+
+#message-submit {
+  
+  border: none;
+  text-align: center;
+  background-color: rgb(246, 246, 246);
+  position: relative;
+  z-index: 1;
+  bottom: 11px;
+}
+
+.fa-paper-plane {
+  z-index: 2;
+  position: relative;
+  left: 950px;
+  font-size: 13px;
+  color: rgb(217, 217, 217) !important;
+}
+
+.new-message-form input::-webkit-input-placeholder {
+  position: relative;
+  top: 1px;
+  left: 1px;
+  font-size: 15px;
+  color: rgb(142, 142, 142);
+  font-weight: 10;
+}
+
+.new-message-form {
+  position: fixed;
+  top: 500px;
+}
+
