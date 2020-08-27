@@ -4,6 +4,15 @@ import NewMessageForm from './new_message_form';
 class MessagesArea extends React.Component {
   constructor(props) {
     super(props);
+
+    App.cable.subscriptions.create(
+      { channel: 'UsersChannel' },
+      {
+        received: (user) => {
+          return this.props.receiveUser(user)
+        }
+      }
+    )
   } 
 
   componentDidMount() {
@@ -12,8 +21,26 @@ class MessagesArea extends React.Component {
     this.props.fetchUsers();
   }
 
+  componentDidUpdate(nextProps) {
+    if (this.props.channelId !== nextProps.match.params.channelId) {
+      this.props.fetchMessages(this.props.channelId);
+      this.props.fetchUsers();
+    }
+  }
+
   timeStamp(message) {
-    const time = message.created_at
+    let time = new Date(message.created_at);
+    let hours = time.getHours();
+    let minutes = time.getMinutes();
+    let amOrPm = "AM";
+
+    if (hours > 12) {
+      hours = hours - 12;
+      amOrPm = "PM"
+    }
+
+
+    return `${hours}:${minutes} ${amOrPm}`;
   }
 
   orderedMessages(messages) {
@@ -22,7 +49,12 @@ class MessagesArea extends React.Component {
         (a, b) => new Date(a.created_at) - new Date(b.created_at)
       );
       return sortedMessages.map(message => (
-        <li key={message.id}>{this.props.users[message.author_id].username} {message.body} {message.created_at}</li>
+        <li key={message.id}>
+          <span className="username">{this.props.users[message.author_id].username} </span>
+          <span className="timestamp">{this.timeStamp(message)}</span> 
+          <p className="body">{message.body}</p> 
+          <br />
+        </li>
       ))
     }
   };

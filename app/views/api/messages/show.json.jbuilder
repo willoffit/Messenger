@@ -1,1 +1,1 @@
-json.partial! 'message', message: @message
+json.partial! '/api/messages/message', message: @message

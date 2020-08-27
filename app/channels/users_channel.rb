@@ -1,7 +1,7 @@
 class UsersChannel < ApplicationCable::Channel
-    # def subscribed
-    #     stream_for 'users_channel'
-    # end
+    def subscribed
+        stream_for 'users_channel'
+    end
 
     # def speak(data)
     #     user = data['user']

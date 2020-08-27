@@ -5,6 +5,7 @@ import MessagesArea from './messages_area';
 import { withRouter } from 'react-router-dom';
 import { fetchChannels } from '../../../actions/channel_actions';
 import { fetchUsers } from '../../../actions/session_actions';
+import { receiveUser } from '../../../actions/session_actions';
 
 const mapStateToProps = (state, ownProps) => ({
   messages: messageSelector(state.entities.messages, ownProps.match.params.channelId),
@@ -19,7 +20,8 @@ const mapDispatchToProps = (dispatch) => ({
   receiveMessage: (message) => dispatch(receiveMessage(message)),
   createMessage: (message) => dispatch(createMessage(message)),
   fetchChannels: () => dispatch(fetchChannels()),
-  fetchUsers: () => dispatch(fetchUsers())
+  fetchUsers: () => dispatch(fetchUsers()),
+  receiveUser: (user) => dispatch(receiveUser(user))
 });
 
 const MessageContainer = withRouter(connect(mapStateToProps, mapDispatchToProps)(MessagesArea));

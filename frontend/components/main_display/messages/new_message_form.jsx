@@ -15,7 +15,7 @@ class NewMessageForm extends React.Component {
       { channel: 'ChatChannel' },
       { received: (message) => this.props.receiveMessage(message) }
     )
-
+    
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -35,12 +35,16 @@ class NewMessageForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.createMessage(this.state);
+    var frm = document.getElementById('new-message-form');
+    frm.submit(); // Submit the form
+    frm.reset();  // Reset all form data
+    return false; // Prevent page refresh
   };
 
   render() {
     return (
       <div className="new-message-form">
-        <form onSubmit={this.handleSubmit}>
+        <form id="message-submit" onSubmit={this.handleSubmit}>
           <br />
           <input placeholder={`Message ${this.props.channelName}`}
             id="message-input"

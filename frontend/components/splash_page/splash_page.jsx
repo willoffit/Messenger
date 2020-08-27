@@ -9,7 +9,7 @@ class SplashPage extends React.Component {
   render() {
     if (this.props.currentUser) {
       return (
-        <Redirect to={`/client/1`} />
+        <Redirect to={`/client/76`} />
       )
     } else {
       return (

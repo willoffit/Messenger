@@ -27,13 +27,17 @@
   background-color: white;
 }
 
+body.noScroll { /* ...or body.dialogShowing */
+  overflow: hidden;
+}
+
 .messages-area ul {
   background: white;
   color: black;
   position: relative;
-  height: 250px;
+  height: 325px;
   width: 900px;
-  bottom: 1800px;
+  bottom: 1900px;
   right: 20px;
   overflow: scroll;
 }
@@ -78,6 +82,8 @@
   position: relative;
   z-index: 1;
   bottom: 11px;
+  height: 0px;
+  width: 0px;
 }
 
 .fa-paper-plane {
@@ -85,6 +91,8 @@
   position: relative;
   left: 950px;
   font-size: 13px;
+  height: 999px;
+  width: 999px;
   color: rgb(217, 217, 217) !important;
 }
 
@@ -102,3 +110,15 @@
   top: 500px;
 }
 
+.username {
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.body {
+
+}
+
+.timestamp {
+
+}

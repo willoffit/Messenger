@@ -4,9 +4,15 @@ export const LOGOUT_USER = "LOGOUT_USER";
 export const RECEIVE_LOGIN_ERRORS = "RECEIVE_LOGIN_ERRORS";
 export const CLEAR_LOGIN_ERRORS = "CLEAR_LOGIN_ERRORS";
 export const RECEIVE_USERS = "RECEIVE_USERS";
+export const RECEIVE_USER = "RECEIVE_USER";
 
 export const receiveCurrentUser = (user) => ({
   type: RECEIVE_CURRENT_USER,
+  user
+});
+
+export const receiveUser = (user) => ({
+  type: RECEIVE_USER,
   user
 });
 

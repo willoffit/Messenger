@@ -4,7 +4,12 @@ class Api::UsersController < ApplicationController
 
     if @user.save
       login!(@user)
-      render :show
+      data = { 
+        id: @user.id,
+        username: @user.username
+      }
+      UsersChannel.broadcast_to("users_channel", data)
+      render "api/users/show"
     else
       render json: @user.errors.full_messages, status: 422
     end

@@ -12,7 +12,8 @@ ChannelParticipant.delete_all
 Message.delete_all
 
 demo_user = User.create!(username: 'DemoUser', password: '123456', email: 'test@demo.com')
-channel1 = Channel.create!(name: "channel1", channel_type: "direct_message")
+channel1 = Channel.create!(name: "General Discussion", channel_type: "direct_message")
+channel2 = Channel.create!(name: "Specific Discussion", channel_type: "direct_message")
 channel_participant = ChannelParticipant.create!(user_id: demo_user.id, channel_id: channel1.id)
-message1 = Message.create!(body: "test message", author_id: demo_user.id, channel_id: channel1.id)
+message1 = Message.create!(body: "hello world!", author_id: demo_user.id, channel_id: channel1.id)
 p "Done!"

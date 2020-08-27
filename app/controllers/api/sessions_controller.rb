@@ -4,6 +4,11 @@ class Api::SessionsController < ApplicationController
 
     if @user
       login!(@user)
+      data = { 
+        id: @user.id,
+        username: @user.username,
+      }
+      UsersChannel.broadcast_to("users_channel", data)
       render "api/users/show"
     else
       render json: ["We couldn't find an account matching that username and password."], status: 401
