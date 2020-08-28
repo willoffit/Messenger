@@ -35,10 +35,9 @@ class NewMessageForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.createMessage(this.state);
-    var frm = document.getElementById('new-message-form');
-    frm.submit(); // Submit the form
-    frm.reset();  // Reset all form data
-    return false; // Prevent page refresh
+    this.setState({
+      body: ''
+    });
   };
 
   render() {
