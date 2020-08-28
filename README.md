@@ -1,24 +1,9 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Messenger
 
-Things you may want to cover:
+Messenger is a workplace communications tool that gives teams a better way of getting things done.
 
-* Ruby version
+The app features a user authentication system, allowing one to sign up, sign in, sign out, and sign in as a demo user.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+The app also features channels, in which users can send messages to one another.
